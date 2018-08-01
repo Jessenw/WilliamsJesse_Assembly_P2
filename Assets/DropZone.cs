@@ -1,17 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems
+using UnityEngine.EventSystems;
 
-public class DropZone : MonoBehaviour {
+public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler {
+	
+	public void OnPointerEnter(PointerEventData eventData) {
+		Debug.Log("OnPointerEnter");
+	}
 
-	// Use this for initialization
-	void Start () {
+	public void OnDrop(PointerEventData eventData) {
+		Debug.Log(eventData.pointerDrag.name + " was dropped onto " + gameObject.name);
 		
+		// Move the selected item card onto the board
+		Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
+		if(d != null) {
+			d.returnParent = this.transform;
+		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	public void OnPointerExit(PointerEventData eventData) {
+		Debug.Log("OnPointerExit");
 	}
 }

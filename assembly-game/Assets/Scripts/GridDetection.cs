@@ -9,7 +9,7 @@ public class GridDetection : MonoBehaviour {
         if (Input.GetMouseButtonDown(0)) 
         {
             Debug.Log("Place Object");
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         }
 	}
 }

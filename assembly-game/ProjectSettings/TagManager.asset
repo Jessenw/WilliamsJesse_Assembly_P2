@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Terrain
+  - Machines
+  - Resources
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Terrain
+    uniqueID: 292022325
+    locked: 0
+  - name: Machines
+    uniqueID: 1686913791
+    locked: 0
+  - name: Resources
+    uniqueID: 1073148641
     locked: 0

@@ -46,7 +46,8 @@ public class PlacementController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            currentPlaceable.transform.position = hit.point;
+            // currentPlaceable.transform.position = hit.point;
+            currentPlaceable.transform.position = new Vector3(Mathf.Round(hit.point.x), Mathf.Round(hit.point.y), Mathf.Round(hit.point.z));
         }
     }
 }

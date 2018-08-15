@@ -13,7 +13,7 @@ public class PlacementController : MonoBehaviour
 
     private GameObject currentPlaceable;
 
-    Transform orientation;
+    private int rotationCount = 0;
 	
 	// Update is called once per frame
 	void Update () 
@@ -21,13 +21,18 @@ public class PlacementController : MonoBehaviour
         if (currentPlaceable == null)
         {
             currentPlaceable = Instantiate(placeable);
+            for (int i = 0; i < rotationCount; i++)
+            {
+                RotateObject();
+            }
+
         }
 
         if (currentPlaceable != null)
         {
             MoveToMouse();
             PlaceOnClick();
-            RotateObject();
+            RotateObjectOnPress();
         }
 	}
 
@@ -50,11 +55,22 @@ public class PlacementController : MonoBehaviour
         }
     }
 
-    public void RotateObject()
+    public void RotateObjectOnPress()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
             currentPlaceable.transform.Rotate(transform.rotation.x, transform.rotation.y + 90, transform.rotation.z);
+
+            rotationCount++;
+            if (rotationCount > 3)
+            {
+                rotationCount = 0;
+            }
         }
+    }
+
+    public void RotateObject()
+    {
+        currentPlaceable.transform.Rotate(transform.rotation.x, transform.rotation.y + 90, transform.rotation.z);
     }
 }

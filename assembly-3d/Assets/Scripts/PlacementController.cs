@@ -12,6 +12,8 @@ public class PlacementController : MonoBehaviour
     private KeyCode hotkey = KeyCode.A;
 
     private GameObject currentPlaceable;
+
+    Transform orientation;
 	
 	// Update is called once per frame
 	void Update () 
@@ -52,7 +54,6 @@ public class PlacementController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Debug.Log("Detect Rotate");
             currentPlaceable.transform.Rotate(transform.rotation.x, transform.rotation.y + 90, transform.rotation.z);
         }
     }

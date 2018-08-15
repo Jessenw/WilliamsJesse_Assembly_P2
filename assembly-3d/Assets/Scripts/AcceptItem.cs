@@ -6,9 +6,9 @@ public class AcceptItem : MonoBehaviour {
 
     public GameObject machine;
 
-    void OnTriggerStay(Collider item)
+    void OnTriggerEnter(Collider item)
     {
         Debug.Log("Collision");
-        Destroy(item);
+        Destroy(item.gameObject);
     }
 }

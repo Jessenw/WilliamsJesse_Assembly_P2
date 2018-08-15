@@ -16,7 +16,6 @@ public class PlacementController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        // HandleInput();
         if (currentPlaceable == null)
         {
             currentPlaceable = Instantiate(placeable);
@@ -26,23 +25,9 @@ public class PlacementController : MonoBehaviour
         {
             MoveToMouse();
             PlaceOnClick();
+            RotateObject();
         }
 	}
-
-    private void HandleInput()
-    {
-        if (Input.GetKeyDown(hotkey))
-        {
-            if (currentPlaceable == null)
-            {
-                currentPlaceable = Instantiate(placeable);
-            }
-            else
-            {
-                Destroy(currentPlaceable);
-            }
-        }
-    }
 
     private void MoveToMouse()
     {
@@ -60,6 +45,15 @@ public class PlacementController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             currentPlaceable = null;
+        }
+    }
+
+    public void RotateObject()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("Detect Rotate");
+            currentPlaceable.transform.Rotate(transform.rotation.x, transform.rotation.y + 90, transform.rotation.z);
         }
     }
 }

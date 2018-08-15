@@ -16,11 +16,16 @@ public class PlacementController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        HandleInput();
+        // HandleInput();
+        if (currentPlaceable == null)
+        {
+            currentPlaceable = Instantiate(placeable);
+        }
 
         if (currentPlaceable != null)
         {
             MoveToMouse();
+            PlaceOnClick();
         }
 	}
 
@@ -46,8 +51,15 @@ public class PlacementController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            // currentPlaceable.transform.position = hit.point;
             currentPlaceable.transform.position = new Vector3(Mathf.Round(hit.point.x), Mathf.Round(hit.point.y), Mathf.Round(hit.point.z));
+        }
+    }
+
+    public void PlaceOnClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            currentPlaceable = null;
         }
     }
 }

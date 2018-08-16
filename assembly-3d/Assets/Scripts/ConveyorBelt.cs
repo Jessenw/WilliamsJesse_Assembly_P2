@@ -2,14 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConveyorBelt : MonoBehaviour {
+/**
+ * This script controls the movement of items on a conveyor belt
+ */
+public class ConveyorBelt : MonoBehaviour
+{
 
-    public GameObject belt;
+    /* The point where an item on the belt is trying to get to */
     public Transform endpoint;
+
     public float speed;
 
-    void OnTriggerStay(Collider item)
+    /*
+     * If a rigid-body collides with the belt, move it towards the endpoint
+     */
+    void OnTriggerStay(Collider obj)
     {
-        item.transform.position = Vector3.MoveTowards(item.transform.position, endpoint.position, speed * Time.deltaTime);
+        obj.transform.position = Vector3.MoveTowards(obj.transform.position, endpoint.position, speed * Time.deltaTime);
     }
 }

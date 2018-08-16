@@ -338,7 +338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926ab57e0d0ec394c9ffed4a0cdc38f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  belt: {fileID: 311034054}
   endpoint: {fileID: 487056008}
   speed: 2
 --- !u!65 &311034056
@@ -522,7 +521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926ab57e0d0ec394c9ffed4a0cdc38f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  belt: {fileID: 565445746}
   endpoint: {fileID: 768282445}
   speed: 2
 --- !u!65 &565445748
@@ -636,7 +634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926ab57e0d0ec394c9ffed4a0cdc38f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  belt: {fileID: 589046385}
   endpoint: {fileID: 613774067}
   speed: 2
 --- !u!65 &589046387
@@ -750,7 +747,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926ab57e0d0ec394c9ffed4a0cdc38f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  belt: {fileID: 597040100}
   endpoint: {fileID: 1313093397}
   speed: 2
 --- !u!65 &597040102
@@ -893,7 +889,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926ab57e0d0ec394c9ffed4a0cdc38f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  belt: {fileID: 620983686}
   endpoint: {fileID: 1355263750}
   speed: 2
 --- !u!65 &620983688
@@ -1087,7 +1082,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926ab57e0d0ec394c9ffed4a0cdc38f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  belt: {fileID: 712275161}
   endpoint: {fileID: 1974330142}
   speed: 2
 --- !u!1 &768282444
@@ -1146,6 +1140,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placeables:
+  - {fileID: 1403010150104462, guid: 139be4c9659c9b44bacac8c13246c148, type: 2}
+  - {fileID: 1383613063237364, guid: b8105d005108c5743b65587b88fa980d, type: 2}
+  finalPlaceables:
   - {fileID: 1403010150104462, guid: 139be4c9659c9b44bacac8c13246c148, type: 2}
   - {fileID: 1561121474449894, guid: 02e5acc42165f94498568304af14e7b2, type: 2}
 --- !u!4 &971539475
@@ -1237,7 +1234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926ab57e0d0ec394c9ffed4a0cdc38f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  belt: {fileID: 1034739095}
   endpoint: {fileID: 2083651740}
   speed: 2
 --- !u!65 &1034739098
@@ -1595,7 +1591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926ab57e0d0ec394c9ffed4a0cdc38f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  belt: {fileID: 1528731053}
   endpoint: {fileID: 8757328}
   speed: 2
 --- !u!65 &1528731056
@@ -1709,7 +1704,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926ab57e0d0ec394c9ffed4a0cdc38f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  belt: {fileID: 1826575255}
   endpoint: {fileID: 240945718}
   speed: 2
 --- !u!65 &1826575258

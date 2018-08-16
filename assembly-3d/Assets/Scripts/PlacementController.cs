@@ -7,6 +7,9 @@ public class PlacementController : MonoBehaviour
     [SerializeField]
     private GameObject[] placeables;
 
+    [SerializeField]
+    private GameObject[] finalPlaceables;
+
     private GameObject currentPlaceable;
     private int rotationCount = 0;
     private int placeableItemIndex = 0;
@@ -70,7 +73,7 @@ public class PlacementController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            currentPlaceable = null;
+            Instantiate(finalPlaceables[placeableItemIndex], currentPlaceable.transform.position, currentPlaceable.transform.rotation);
         }
     }
 

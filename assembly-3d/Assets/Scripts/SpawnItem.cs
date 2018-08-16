@@ -8,24 +8,29 @@ public class SpawnItem : MonoBehaviour
     [SerializeField]
     public GameObject item; // The item to be spawn
 
+    [SerializeField]
+    public float sphereRadius = 0.1f;
+
     private float timer = 0f;
+    private bool canPlace = true;
 	
 	// Update is called once per frame
 	void Update () {
         timer += Time.deltaTime;
-        if (timer > 3)
+        if (timer > 3 && canPlace)
         {
-            Vector3 checkBoxCenter = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
-            Vector3 checkBox = new Vector3(0.2f, 0.2f, 0.2f);
-            if (Physics.CheckBox(checkBoxCenter, checkBox))
-            {
-                Debug.Log("Contains");
-            }
-            else
-            {
-                Instantiate(item, transform.position, transform.rotation);
-            }
+            Instantiate(item, transform.position, transform.rotation);
             timer = 0f;
         }
 	}
+
+    public void OnTriggerEnter(Collider obj)
+    {
+        canPlace = false;
+    }
+
+    public void OnTriggerExit(Collider obj)
+    {
+        canPlace = true;
+    }
 }

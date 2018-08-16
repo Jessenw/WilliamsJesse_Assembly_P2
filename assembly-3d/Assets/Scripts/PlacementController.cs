@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class PlacementController : MonoBehaviour 
 {
-
     [SerializeField]
-    private GameObject placeable;
-
-    [SerializeField]
-    private KeyCode hotkey = KeyCode.A;
+    private GameObject[] placeables;
 
     private GameObject currentPlaceable;
-
     private int rotationCount = 0;
+    private int placeableItemIndex = 0;
 	
 	// Update is called once per frame
 	void Update () 
     {
         if (currentPlaceable == null)
         {
-            currentPlaceable = Instantiate(placeable);
+            currentPlaceable = Instantiate(placeables[placeableItemIndex]);
             for (int i = 0; i < rotationCount; i++)
             {
                 RotateObject();
@@ -30,11 +26,34 @@ public class PlacementController : MonoBehaviour
 
         if (currentPlaceable != null)
         {
+            ChangePlaceable();
             MoveToMouse();
             PlaceOnClick();
             RotateObjectOnPress();
         }
 	}
+
+    private void ChangePlaceable()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
+        {
+            if (placeableItemIndex < placeables.Length - 1)
+            {
+                placeableItemIndex++;
+                Destroy(currentPlaceable);
+                currentPlaceable = Instantiate(placeables[placeableItemIndex]);
+            }
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
+        {
+            if (placeableItemIndex > 0)
+            {
+                placeableItemIndex--;
+                Destroy(currentPlaceable);
+                currentPlaceable = Instantiate(placeables[placeableItemIndex]);
+            }
+        }
+    }
 
     private void MoveToMouse()
     {

@@ -2,15 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Steel : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-}
+/*
+ * This component is used by AcceptItem.cs to identify steel items
+ */
+public class Steel : MonoBehaviour {}

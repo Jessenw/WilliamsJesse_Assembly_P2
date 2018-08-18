@@ -2,15 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Copper : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-}
+/*
+ * This component is used by AcceptItem.cs to identify copper items
+ */
+public class Copper : MonoBehaviour {}

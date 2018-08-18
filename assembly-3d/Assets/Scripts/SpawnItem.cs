@@ -6,7 +6,7 @@ public class SpawnItem : MonoBehaviour
 {
 
     [SerializeField]
-    public GameObject item; // The item to be spawn
+    public GameObject item; // The item to be spawned
 
     [SerializeField]
     public float sphereRadius = 0.1f;

@@ -2,29 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This class handles the accepting and processing of items for machines
+ */
 public class AcceptItem : MonoBehaviour {
 
     [SerializeField]
-    private GameObject engine;
+    private GameObject output; // The item that will be created
 
-    // Keep a count of how many items there are
+    /* Counts for how many of each item there are */
     private int itemCount1 = 0;
     private int itemCount2 = 0;
 
+    /* How long it takes for the output to be created */
     private float timer = 2.0f;
 
     void Update()
     {
+        /* If the recipe is satisfied */
         if ((itemCount2 >= 2) && (itemCount1 >= 1))
         {
             if (timer < 0)
             {
-                Vector3 spawnPos = new Vector3(transform.position.x + 1.5f, transform.position.y + 1.0f, transform.position.z);
-                Instantiate(engine, spawnPos, transform.rotation);
+                Vector3 outputPos = new Vector3(transform.position.x + 1.5f, 
+                                               transform.position.y + 1.0f, 
+                                               transform.position.z);
+                Instantiate(output, outputPos, transform.rotation);
 
+                /* Remove items from count and reset timer */
                 itemCount2 -= 2;
                 itemCount1--;
-
                 timer = 2.0f;
             }
             else
@@ -36,12 +43,15 @@ public class AcceptItem : MonoBehaviour {
 
     void OnTriggerEnter(Collider item)
     {
+        /* Check if the item is required by the recipe. If it is, increment
+         * the appriopriate item count and destroy the item
+         */
+
         Copper copper = item.gameObject.GetComponent<Copper>();
         if (copper != null)
         {
             Destroy(item.gameObject);
             itemCount1++;
-            Debug.Log("Copper detected | count " + itemCount1);
         }
 
         Steel steel = item.gameObject.GetComponent<Steel>();
@@ -49,7 +59,6 @@ public class AcceptItem : MonoBehaviour {
         {
             Destroy(item.gameObject);
             itemCount2++;
-            Debug.Log("Steel detected | count " + itemCount2);
         }
     }
 }

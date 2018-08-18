@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class PlacementController : MonoBehaviour 
 {
+    /* The different machines that the player can place, these should only be 
+       templates */
     [SerializeField]
     private GameObject[] placeables;
 
+    private int placeableItemIndex = 0;
+
+    /* Same a placeables except these are the actual objects that will be 
+       placed */
     [SerializeField]
     private GameObject[] finalPlaceables;
 
+    /* The item that will be placed */
     private GameObject currentPlaceable;
+    /* Remembers how many times the user has rotated the current item.
+     * This is used to maintain rotation after an item has been placed
+     */
+
     private int rotationCount = 0;
-    private int placeableItemIndex = 0;
 	
-	// Update is called once per frame
 	void Update () 
     {
         if (currentPlaceable == null)
@@ -77,6 +86,7 @@ public class PlacementController : MonoBehaviour
         }
     }
 
+    /* If the user presses "R" then the template should be rotated by 90 degrees */
     public void RotateObjectOnPress()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -91,8 +101,12 @@ public class PlacementController : MonoBehaviour
         }
     }
 
+    /* When a new template item is generated it should have the same orientation
+     * as the previously placed object */
     public void RotateObject()
     {
-        currentPlaceable.transform.Rotate(transform.rotation.x, transform.rotation.y + 90, transform.rotation.z);
+        currentPlaceable.transform.Rotate(transform.rotation.x, 
+                                          transform.rotation.y + 90, 
+                                          transform.rotation.z);
     }
 }

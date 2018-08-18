@@ -82,7 +82,21 @@ public class PlacementController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(finalPlaceables[placeableItemIndex], currentPlaceable.transform.position, currentPlaceable.transform.rotation);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.GetComponent<Machine>() == null)
+                {
+                    Debug.Log("Placing machine");
+                    Instantiate(finalPlaceables[placeableItemIndex], currentPlaceable.transform.position, currentPlaceable.transform.rotation);
+                }
+                else
+                {
+                    Debug.Log("Cannot place, an object is already here");
+                }
+            }
         }
     }
 

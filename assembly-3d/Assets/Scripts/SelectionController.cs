@@ -12,7 +12,7 @@ public class SelectionController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
         }
 	}
 }

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114407154908488160}
   - component: {fileID: 114059262823245084}
   m_Layer: 0
-  m_Name: CombiningMachine
+  m_Name: Combiner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

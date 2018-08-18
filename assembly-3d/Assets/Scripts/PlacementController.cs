@@ -87,14 +87,10 @@ public class PlacementController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
+                Debug.Log(hit.collider.name);
                 if (hit.collider.GetComponent<Machine>() == null)
                 {
-                    Debug.Log("Placing machine");
                     Instantiate(finalPlaceables[placeableItemIndex], currentPlaceable.transform.position, currentPlaceable.transform.rotation);
-                }
-                else
-                {
-                    Debug.Log("Cannot place, an object is already here");
                 }
             }
         }

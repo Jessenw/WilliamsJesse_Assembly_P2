@@ -74,7 +74,9 @@ public class PlacementController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            currentPlaceable.transform.position = new Vector3(Mathf.Round(hit.point.x), Mathf.Round(hit.point.y), Mathf.Round(hit.point.z));
+            currentPlaceable.transform.position = new Vector3(Mathf.Round(hit.point.x), 
+                                                              Mathf.Round(hit.point.y), 
+                                                              Mathf.Round(hit.point.z));
         }
     }
 
@@ -87,10 +89,11 @@ public class PlacementController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log(hit.collider.name);
                 if (hit.collider.GetComponent<Machine>() == null)
                 {
-                    Instantiate(finalPlaceables[placeableItemIndex], currentPlaceable.transform.position, currentPlaceable.transform.rotation);
+                    Instantiate(finalPlaceables[placeableItemIndex], 
+                                                    currentPlaceable.transform.position, 
+                                                    currentPlaceable.transform.rotation);
                 }
             }
         }
@@ -101,7 +104,9 @@ public class PlacementController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            currentPlaceable.transform.Rotate(transform.rotation.x, transform.rotation.y + 90, transform.rotation.z);
+            currentPlaceable.transform.Rotate(transform.rotation.x, 
+                                              transform.rotation.y + 90, 
+                                              transform.rotation.z);
 
             rotationCount++;
             if (rotationCount > 3)

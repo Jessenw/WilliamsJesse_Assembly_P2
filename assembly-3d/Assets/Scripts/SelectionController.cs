@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SelectionController : MonoBehaviour 
 {
-    
+    private bool isShowing = false;
+
 	// Update is called once per frame
 	void Update () {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -12,7 +13,13 @@ public class SelectionController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            //Debug.Log(hit.collider.name);
+            if (Input.GetMouseButtonUp(0))
+            {
+                //GameObject dialog = hit.collider.gameObject.transform.Find("CombinerDialog").gameObject;
+                GameObject dialog = hit.collider.gameObject.transform.Find("CombinerDialog").gameObject;
+                isShowing = !isShowing;
+                dialog.SetActive(isShowing);
+            }
         }
 	}
 }

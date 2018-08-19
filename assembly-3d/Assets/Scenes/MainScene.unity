@@ -715,7 +715,7 @@ Prefab:
     - target: {fileID: 114103587175489200, guid: 139be4c9659c9b44bacac8c13246c148,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: '"engine"'
+      value: engine
       objectReference: {fileID: 0}
     - target: {fileID: 114149660670862666, guid: 139be4c9659c9b44bacac8c13246c148,
         type: 2}

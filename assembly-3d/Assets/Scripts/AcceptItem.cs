@@ -14,6 +14,9 @@ public class AcceptItem : MonoBehaviour {
     private int itemCount1 = 0;
     private int itemCount2 = 0;
 
+    private int item1Cost = 100;
+    private int item2Cost = 100;
+
     /* How long it takes for the output to be created */
     private float timer = 2.0f;
 
@@ -21,20 +24,16 @@ public class AcceptItem : MonoBehaviour {
 
     void Update()
     {
-        if (currentRecipe.Equals("engine"))
+        if (!currentRecipe.Equals(""))
         {
-            buildEngine();
-        }
-        else if (currentRecipe.Equals("circuit"))
-        {
-            buildCircuit();
+            buildOutput();
         }
     }
 
-    void buildEngine()
+    void buildOutput()
     {
         /* If the recipe is satisfied */
-        if ((itemCount2 >= 2) && (itemCount1 >= 1))
+        if ((itemCount1 >= item1Cost) && (itemCount2 >= item2Cost))
         {
             if (timer < 0)
             {
@@ -45,7 +44,7 @@ public class AcceptItem : MonoBehaviour {
 
                 /* Remove items from count and reset timer */
                 itemCount2 -= 2;
-                itemCount1--;
+                itemCount1 -= 2;
                 timer = 2.0f;
             }
             else
@@ -55,14 +54,9 @@ public class AcceptItem : MonoBehaviour {
         }
     }
 
-    void buildCircuit()
-    {
-        
-    }
-
     void OnTriggerEnter(Collider item)
     {
-        if (currentRecipe.Equals("engine"))
+        if (currentRecipe == "engine")
         {
             /* Check if the item is required by the recipe. If it is, increment
             * the appriopriate item count and destroy the item
@@ -104,5 +98,16 @@ public class AcceptItem : MonoBehaviour {
     {
         Debug.Log("New recipe is: " + recipe);
         currentRecipe = recipe;
+
+        /* Set the parameters of the recipe */
+        if (recipe.Equals("engine"))
+        {
+            /* Number of items it takes to build */
+            item1Cost = 2;
+            item2Cost = 2;
+
+            /* Amount of time it takes to build */
+            timer = 2.0f; // 2 seconds
+        }
     }
 }

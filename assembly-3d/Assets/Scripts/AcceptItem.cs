@@ -21,6 +21,14 @@ public class AcceptItem : MonoBehaviour {
 
     void Update()
     {
+        if (currentRecipe.Equals("engine"))
+        {
+            buildEngine();
+        }
+        else if (currentRecipe.Equals("circuit"))
+        {
+            buildCircuit();
+        }
     }
 
     void buildEngine()
@@ -47,6 +55,11 @@ public class AcceptItem : MonoBehaviour {
         }
     }
 
+    void buildCircuit()
+    {
+        
+    }
+
     void OnTriggerEnter(Collider item)
     {
         if (currentRecipe.Equals("engine"))
@@ -71,8 +84,19 @@ public class AcceptItem : MonoBehaviour {
         }
         else if (currentRecipe.Equals("circuit"))
         {
+            Copper copper = item.gameObject.GetComponent<Copper>();
+            if (copper != null)
+            {
+                Destroy(item.gameObject);
+                itemCount1++;
+            }
+
             Plastic plastic = item.gameObject.GetComponent<Plastic>();
-            if ()
+            if (plastic != null)
+            {
+                Destroy(item.gameObject);
+                itemCount2++;
+            }
         }
     }
 

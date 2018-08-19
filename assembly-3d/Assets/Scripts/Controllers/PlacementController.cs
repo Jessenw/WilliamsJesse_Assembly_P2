@@ -41,6 +41,7 @@ public class PlacementController : MonoBehaviour
             ChangePlaceable();
             MoveToMouse();
             PlaceOnClick();
+            RemoveMachine();
             RotateObjectOnPress();
         }
 	}
@@ -94,6 +95,23 @@ public class PlacementController : MonoBehaviour
                     Instantiate(finalPlaceables[placeableItemIndex], 
                                                     currentPlaceable.transform.position, 
                                                     currentPlaceable.transform.rotation);
+                }
+            }
+        }
+    }
+
+    public void RemoveMachine()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.GetComponent<Machine>() != null)
+                {
+                    Destroy(hit.collider.gameObject);
                 }
             }
         }

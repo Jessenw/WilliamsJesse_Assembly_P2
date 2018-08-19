@@ -37,7 +37,7 @@ public class AcceptItem : MonoBehaviour {
         {
             if (timer < 0)
             {
-                Vector3 outputPos = new Vector3(transform.position.x + 1.5f,
+                Vector3 outputPos = new Vector3(transform.position.x + 1.0f,
                                                transform.position.y + 1.0f,
                                                transform.position.z);
                 Instantiate(output, outputPos, transform.rotation);

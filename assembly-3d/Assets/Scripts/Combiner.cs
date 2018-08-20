@@ -18,7 +18,8 @@ public class Combiner : MonoBehaviour {
     private int item2Cost = 100;
 
     /* How long it takes for the output to be created */
-    private float timer = 2.0f;
+    private float timer = 0.0f;
+    private float recipeTimer = 0.0f;
 
     private string currentRecipe = "";
 
@@ -43,14 +44,12 @@ public class Combiner : MonoBehaviour {
                 Instantiate(output, outputPos, transform.rotation);
 
                 /* Remove items from count and reset timer */
-                itemCount2 -= 2;
-                itemCount1 -= 2;
-                timer = 2.0f;
+                itemCount2 -= item1Cost;
+                itemCount1 -= item2Cost;
+                timer = recipeTimer;
             }
-            else
-            {
-                timer -= Time.deltaTime;
-            }
+            else timer -= Time.deltaTime;
+            
         }
     }
 
@@ -58,10 +57,6 @@ public class Combiner : MonoBehaviour {
     {
         if (currentRecipe == "engine")
         {
-            /* Check if the item is required by the recipe. If it is, increment
-            * the appriopriate item count and destroy the item
-            */
-
             Copper copper = item.gameObject.GetComponent<Copper>();
             if (copper != null)
             {
@@ -74,6 +69,40 @@ public class Combiner : MonoBehaviour {
             {
                 Destroy(item.gameObject);
                 itemCount2++;
+            }
+        }
+        else if (currentRecipe.Equals("wheel"))
+        {
+            Steel steel = item.gameObject.GetComponent<Steel>();
+            if (steel != null)
+            {
+                Destroy(item.gameObject);
+                itemCount1++;
+            }
+        }
+        else if (currentRecipe.Equals("gear"))
+        {
+            Steel steel = item.gameObject.GetComponent<Steel>();
+            if (steel != null)
+            {
+                Destroy(item.gameObject);
+                itemCount1++;
+            }
+
+            Rubber rubber = item.gameObject.GetComponent<Rubber>();
+            if (rubber != null)
+            {
+                Destroy(item.gameObject);
+                itemCount2++;
+            }
+        }
+        else if (currentRecipe.Equals("glass"))
+        {
+            Sand sand = item.gameObject.GetComponent<Sand>();
+            if (sand != null)
+            {
+                Destroy(item.gameObject);
+                itemCount1++;
             }
         }
         else if (currentRecipe.Equals("circuit"))
@@ -94,20 +123,52 @@ public class Combiner : MonoBehaviour {
         }
     }
 
+    /*
+     * This function is called by the combiner's modal dialog buttons
+     */
     public void UpdateRecipe(string recipe)
     {
         Debug.Log("New recipe is: " + recipe);
         currentRecipe = recipe;
 
-        /* Set the parameters of the recipe */
+        /* Set the parameters of the recipe 
+         * 
+         * itemCost = the number of associated materials required to build
+         * timer = how long it will take to build
+         */
         if (recipe.Equals("engine"))
         {
-            /* Number of items it takes to build */
-            item1Cost = 2;
-            item2Cost = 2;
-
-            /* Amount of time it takes to build */
-            timer = 2.0f; // 2 seconds
+            item1Cost = 2; // Copper
+            item2Cost = 2; // Steel
+            recipeTimer = 2.0f;
         }
+        else if (recipe.Equals("wheel"))
+        {
+            item1Cost = 1; // Steel
+            item2Cost = 0; // Null
+            recipeTimer = 1.0f;
+        }
+        else if (recipe.Equals("gear"))
+        {
+            item1Cost = 2; // Steel
+            item2Cost = 1; // Rubber
+            recipeTimer = 1.0f;
+        }
+        else if (recipe.Equals("glass"))
+        {
+            item1Cost = 2; // Sand
+            item2Cost = 1; // Rubber
+            recipeTimer = 4.0f;
+        }
+        else if (recipe.Equals("circuit"))
+        {
+            item1Cost = 3; // Copper
+            item2Cost = 1; // Plastic
+            recipeTimer = 6.0f;
+        }
+
+        /* Reset the count when changing the recipe */
+        itemCount1 = 0;
+        itemCount2 = 0;
     }
 }

@@ -11,10 +11,15 @@ public class TrainScript : MonoBehaviour
     [SerializeField]
     public Transform offScreenTrainStop;
 
+    [SerializeField]
+    public GameObject train;
+
     public float offScreenTimer = 10.0f;
 
     [SerializeField]
     public float speed = 2.0f;
+
+    private bool instantiateOnce = true;
     
     string[] requiredItems; // The items that the train requires
     int[] itemNeeded;  // The needed amount of each item
@@ -62,7 +67,7 @@ public class TrainScript : MonoBehaviour
 
             /* Generate the amount required */
             requiredAmount = Random.Range(1, 5);
-            requiredAmount *= 2;
+            requiredAmount *= 1;
             /* Debug */
             //requiredAmount = 3;
             itemNeeded[0] = requiredAmount;
@@ -71,10 +76,16 @@ public class TrainScript : MonoBehaviour
 
     void NextTrain()
     {
-        //Debug.Log("monkey");
         TrainController component = transform.GetComponent<TrainController>();
         component.enabled = false;
         transform.position = Vector3.MoveTowards(transform.position, offScreenTrainStop.position, speed * Time.deltaTime);
+
+        Vector3 spawnPos = new Vector3(0, 0, 0);
+        if (instantiateOnce) 
+        {
+            instantiateOnce = !instantiateOnce;
+            Instantiate(train, spawnPos, transform.rotation);
+        }
     }
 
     private void OnTriggerEnter(Collider col)

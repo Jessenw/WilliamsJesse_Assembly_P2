@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23309773832971372}
   - component: {fileID: 65523722271711092}
   - component: {fileID: 54574039721127484}
+  - component: {fileID: 114965045069075890}
   - component: {fileID: 114279679834455330}
   m_Layer: 2
   m_Name: Circuit
@@ -122,5 +123,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3499ae382889c4c4ea58c6ecbca14a92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114965045069075890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1232991012578082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f26604e9a7f34d83b748e667afc97e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

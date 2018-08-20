@@ -896,7 +896,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d297cae9ee38ba4db244310a06e4f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  output: {fileID: 1378160709844028, guid: 1c08a7e3f742a0a459824825ea14a6c0, type: 2}
+  engine: {fileID: 1378160709844028, guid: 1c08a7e3f742a0a459824825ea14a6c0, type: 2}
+  wheel: {fileID: 1232991012578082, guid: 95c7673cf0cb94c04a3b00faadd2df7c, type: 2}
+  gear: {fileID: 1232991012578082, guid: 9a0b49270535e4fd88bcbd9f3d6abe12, type: 2}
+  glass: {fileID: 1232991012578082, guid: bfec114c586d74ed0a81dc2fc46682b0, type: 2}
+  circuit: {fileID: 1232991012578082, guid: 4abc3be0700ba401f8fcaf64598258d6, type: 2}
 --- !u!114 &114780014702103010
 MonoBehaviour:
   m_ObjectHideFlags: 1

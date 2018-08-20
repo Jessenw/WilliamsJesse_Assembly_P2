@@ -8,7 +8,15 @@ using UnityEngine;
 public class Combiner : MonoBehaviour {
 
     [SerializeField]
-    private GameObject output; // The item that will be created
+    private GameObject engine;
+    [SerializeField]
+    private GameObject wheel;
+    [SerializeField]
+    private GameObject gear;
+    [SerializeField]
+    private GameObject glass;
+    [SerializeField]
+    private GameObject circuit;
 
     /* Counts for how many of each item there are */
     private int itemCount1 = 0;
@@ -22,6 +30,11 @@ public class Combiner : MonoBehaviour {
     private float recipeTimer = 0.0f;
 
     private string currentRecipe = "";
+
+    void Start()
+    {
+
+    }
 
     void Update()
     {
@@ -41,7 +54,13 @@ public class Combiner : MonoBehaviour {
                 Vector3 outputPos = new Vector3(transform.position.x + 1.0f,
                                                transform.position.y + 1.0f,
                                                transform.position.z);
-                Instantiate(output, outputPos, transform.rotation);
+                
+                if (currentRecipe.Equals("engine")) Instantiate(engine, outputPos, transform.rotation);
+                else if (currentRecipe.Equals("wheel")) Instantiate(wheel, outputPos, transform.rotation);
+                else if (currentRecipe.Equals("gear")) Instantiate(gear, outputPos, transform.rotation);
+                else if (currentRecipe.Equals("glass")) Instantiate(glass, outputPos, transform.rotation);
+                else if (currentRecipe.Equals("circuit")) Instantiate(circuit, outputPos, transform.rotation);
+
 
                 /* Remove items from count and reset timer */
                 itemCount2 -= item1Cost;
@@ -78,6 +97,7 @@ public class Combiner : MonoBehaviour {
             {
                 Destroy(item.gameObject);
                 itemCount1++;
+                itemCount2++;
             }
         }
         else if (currentRecipe.Equals("gear"))
@@ -103,6 +123,7 @@ public class Combiner : MonoBehaviour {
             {
                 Destroy(item.gameObject);
                 itemCount1++;
+                itemCount2++;
             }
         }
         else if (currentRecipe.Equals("circuit"))
@@ -157,14 +178,14 @@ public class Combiner : MonoBehaviour {
         else if (recipe.Equals("glass"))
         {
             item1Cost = 2; // Sand
-            item2Cost = 1; // Rubber
-            recipeTimer = 4.0f;
+            item2Cost = 0; // Null
+            recipeTimer = 3.0f;
         }
         else if (recipe.Equals("circuit"))
         {
             item1Cost = 3; // Copper
             item2Cost = 1; // Plastic
-            recipeTimer = 6.0f;
+            recipeTimer = 4.0f;
         }
 
         /* Reset the count when changing the recipe */

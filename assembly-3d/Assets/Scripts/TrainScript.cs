@@ -40,7 +40,7 @@ public class TrainScript : MonoBehaviour
 
     void NewTrain()
     {
-        int itemCount = Random.Range(1, 2); // Generate number of items
+        int itemCount = Random.Range(1, 1); // Generate number of items
         requiredItems = new string[itemCount];
         itemNeeded = new int[itemCount];
 
@@ -50,20 +50,21 @@ public class TrainScript : MonoBehaviour
             int requiredAmount = 0;        // How much of the item is needed
 
             /* Generate the item */
-            int randomItem = Random.Range(0, 4);
+            int randomItem = Random.Range(0, 5);
             /* Debug */
-            randomItem = 1;
+            //randomItem = 1;
             if (randomItem == 0) item = "circuit";
             else if (randomItem == 1) item = "engine";
             else if (randomItem == 2) item = "glass";
             else if (randomItem == 3) item = "wheel";
+            else if (randomItem == 4) item = "gear";
             requiredItems[i] = item;
 
             /* Generate the amount required */
             requiredAmount = Random.Range(1, 5);
-            requiredAmount *= 10;
+            requiredAmount *= 2;
             /* Debug */
-            requiredAmount = 3;
+            //requiredAmount = 3;
             itemNeeded[0] = requiredAmount;
         }
     }
@@ -79,12 +80,27 @@ public class TrainScript : MonoBehaviour
     private void OnTriggerEnter(Collider col)
     {
         GameObject gameObj = col.gameObject;
-        if ((gameObj.GetComponent<Engine>() != null) && (requiredItems[0] == "engine"))
+        if ((requiredItems[0] == "engine") && (gameObj.GetComponent<Engine>() != null))
         {
             Destroy(gameObj);
             itemNeeded[0]--;
         }
-        else if (gameObj.GetComponent<Circuit>() != null && requiredItems[0] == "circuit")
+        if ((requiredItems[0] == "circuit") && (gameObj.GetComponent<Circuit>() != null))
+        {
+            Destroy(gameObj);
+            itemNeeded[0]--;
+        }
+        if ((requiredItems[0] == "gear") && (gameObj.GetComponent<Gears>() != null))
+        {
+            Destroy(gameObj);
+            itemNeeded[0]--;
+        }
+        if ((requiredItems[0] == "glass") && (gameObj.GetComponent<Glass>() != null))
+        {
+            Destroy(gameObj);
+            itemNeeded[0]--;
+        }
+        if ((requiredItems[0] == "wheel") && (gameObj.GetComponent<Wheel>() != null))
         {
             Destroy(gameObj);
             itemNeeded[0]--;

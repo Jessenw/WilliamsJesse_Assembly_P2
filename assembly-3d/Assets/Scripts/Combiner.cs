@@ -5,7 +5,7 @@ using UnityEngine;
 /*
  * This class handles the accepting and processing of items for machines
  */
-public class AcceptItem : MonoBehaviour {
+public class Combiner : MonoBehaviour {
 
     [SerializeField]
     private GameObject output; // The item that will be created

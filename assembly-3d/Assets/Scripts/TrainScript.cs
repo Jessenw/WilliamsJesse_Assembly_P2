@@ -33,6 +33,7 @@ public class TrainScript : MonoBehaviour
 
         if (itemCount <= 0)
         {
+            
             NextTrain();
         }
 	}
@@ -69,20 +70,14 @@ public class TrainScript : MonoBehaviour
 
     void NextTrain()
     {
-        if (offScreenTimer <= 0)
-        {
-            NewTrain();
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, offScreenTrainStop.position, speed * Time.deltaTime);
-        }
+        //Debug.Log("monkey");
+        TrainController component = transform.GetComponent<TrainController>();
+        component.enabled = false;
+        transform.position = Vector3.MoveTowards(transform.position, offScreenTrainStop.position, speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider col)
     {
-        Debug.Log("monkey");
-
         GameObject gameObj = col.gameObject;
         if ((gameObj.GetComponent<Engine>() != null) && (requiredItems[0] == "engine"))
         {

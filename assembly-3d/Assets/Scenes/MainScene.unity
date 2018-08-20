@@ -1658,7 +1658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiText: {fileID: 1993685595}
-  offScreenTrainStop: {fileID: 0}
+  offScreenTrainStop: {fileID: 295982920}
   offScreenTimer: 10
   speed: 2
 --- !u!65 &1687476791

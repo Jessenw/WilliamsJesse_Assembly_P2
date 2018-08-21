@@ -39,7 +39,7 @@ public class TrainScript : MonoBehaviour
             requiredItems[i] = item;
 
             /* Generate the amount required */
-            requiredAmount = Random.Range(1, 5);
+            requiredAmount = Random.Range(3, 6);
             requiredAmount *= 1;
             itemNeeded[0] = requiredAmount;
         }

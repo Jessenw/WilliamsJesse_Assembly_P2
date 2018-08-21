@@ -153,9 +153,9 @@ public class Combiner : MonoBehaviour {
         }
         else if (recipe.Equals("wheel"))
         {
-            item1Cost = 1; // Steel
+            item1Cost = 3; // Steel
             item2Cost = 0; // Null
-            recipeTimer = 1.0f;
+            recipeTimer = 2.0f;
         }
         else if (recipe.Equals("gear"))
         {
@@ -165,7 +165,7 @@ public class Combiner : MonoBehaviour {
         }
         else if (recipe.Equals("glass"))
         {
-            item1Cost = 2; // Sand
+            item1Cost = 3; // Sand
             item2Cost = 0; // Null
             recipeTimer = 3.0f;
         }
@@ -173,7 +173,7 @@ public class Combiner : MonoBehaviour {
         {
             item1Cost = 3; // Copper
             item2Cost = 1; // Plastic
-            recipeTimer = 4.0f;
+            recipeTimer = 3.0f;
         }
 
         /* Reset the count when changing the recipe */

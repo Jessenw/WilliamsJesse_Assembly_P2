@@ -2,35 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* This script automatically spawns new GameObject's after a specified time */
 public class SpawnItem : MonoBehaviour 
 {
+    [SerializeField]
+    private GameObject item; // The item to be spawned
 
     [SerializeField]
-    public GameObject item; // The item to be spawned
-
-    [SerializeField]
-    public float sphereRadius = 0.1f;
+    private float spawnRate = 1.0f; // How many seconds until the item spawns again
 
     private float timer = 0f;
-    private bool canPlace = true;
+    private bool canSpawn = true; // True = new item can be spawned
 	
-	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
         timer += Time.deltaTime;
-        if (timer > 3 && canPlace)
+        if (timer > spawnRate && canSpawn)
         {
             Instantiate(item, transform.position, transform.rotation);
             timer = 0f;
         }
 	}
 
-    public void OnTriggerEnter(Collider obj)
-    {
-        canPlace = false;
-    }
-
-    public void OnTriggerExit(Collider obj)
-    {
-        canPlace = true;
-    }
+    /* Trigger functions which determine whether there is free space to
+     * spawn an item */
+    public void OnTriggerEnter(Collider obj) { canSpawn = false; }
+    public void OnTriggerExit(Collider obj) { canSpawn = true; }
 }

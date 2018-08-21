@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TrainScript : MonoBehaviour 
 {
@@ -14,18 +15,18 @@ public class TrainScript : MonoBehaviour
     [SerializeField]
     public GameObject train;
 
-    public float offScreenTimer = 10.0f;
+    public float offScreenTimer = 1.0f;
 
     [SerializeField]
     public float speed = 2.0f;
-
-    private bool instantiateOnce = true;
     
     string[] requiredItems; // The items that the train requires
     int[] itemNeeded;  // The needed amount of each item
 
 	void Start () 
-    { 
+    {
+        offScreenTimer = 3.0f;
+
         int itemCount = Random.Range(1, 1); // Generate number of items
         requiredItems = new string[itemCount];
         itemNeeded = new int[itemCount];
@@ -59,11 +60,16 @@ public class TrainScript : MonoBehaviour
         uiText.text = requiredItems[0] + " [" + itemCount + "]";
 
         /* If requirements are fulilled, get next train */
-        if (itemCount <= 0) NextTrain();
+        if (itemCount <= 0) 
+        {
+            offScreenTimer -= Time.deltaTime;
+            NextTrain();
+        }
 	}
 
     void NextTrain()
     {
+        Debug.Log(offScreenTimer);
         /* Stop TrainController from freezing position */
         TrainController component = transform.GetComponent<TrainController>();
         component.enabled = false;
@@ -72,13 +78,8 @@ public class TrainScript : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, 
                                                  offScreenTrainStop.position, 
                                                  speed * Time.deltaTime);
-        
-        if (instantiateOnce) 
-        {
-            Vector3 spawnPos = new Vector3(0, 0, 0);
-            instantiateOnce = false;
-            Instantiate(train, spawnPos, transform.rotation);
-        }
+
+        if (offScreenTimer <= 0) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void OnTriggerEnter(Collider col)

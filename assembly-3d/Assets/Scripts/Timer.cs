@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
     public float timer;
     private bool setGameOverCanvas = true;
 
-    private void Start() { timer = 80.0f; }
+    private void Start() { timer = 35.0f; }
 
     void Update () 
     {

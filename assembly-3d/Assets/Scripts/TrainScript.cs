@@ -25,26 +25,7 @@ public class TrainScript : MonoBehaviour
     int[] itemNeeded;  // The needed amount of each item
 
 	void Start () 
-    {
-        NewTrain();
-	}
-	
-	// Update is called once per frame
-	void Update () 
-    {
-        int itemCount = itemNeeded[0];
-        string item = requiredItems[0];
-        uiText.text = item + " [" + itemCount + "]";
-
-        if (itemCount <= 0)
-        {
-            
-            NextTrain();
-        }
-	}
-
-    void NewTrain()
-    {
+    { 
         int itemCount = Random.Range(1, 1); // Generate number of items
         requiredItems = new string[itemCount];
         itemNeeded = new int[itemCount];
@@ -56,8 +37,6 @@ public class TrainScript : MonoBehaviour
 
             /* Generate the item */
             int randomItem = Random.Range(0, 5);
-            /* Debug */
-            //randomItem = 1;
             if (randomItem == 0) item = "circuit";
             else if (randomItem == 1) item = "engine";
             else if (randomItem == 2) item = "glass";
@@ -68,22 +47,36 @@ public class TrainScript : MonoBehaviour
             /* Generate the amount required */
             requiredAmount = Random.Range(1, 5);
             requiredAmount *= 1;
-            /* Debug */
-            //requiredAmount = 3;
             itemNeeded[0] = requiredAmount;
         }
     }
+	
+	void Update () 
+    {
+        int itemCount = itemNeeded[0];
+
+        /* Update the on-screen recipe */
+        uiText.text = requiredItems[0] + " [" + itemCount + "]";
+
+        /* If requirements are fulilled, get next train */
+        if (itemCount <= 0) NextTrain();
+	}
 
     void NextTrain()
     {
+        /* Stop TrainController from freezing position */
         TrainController component = transform.GetComponent<TrainController>();
         component.enabled = false;
-        transform.position = Vector3.MoveTowards(transform.position, offScreenTrainStop.position, speed * Time.deltaTime);
 
-        Vector3 spawnPos = new Vector3(0, 0, 0);
+        /* Move train off-screen */
+        transform.position = Vector3.MoveTowards(transform.position, 
+                                                 offScreenTrainStop.position, 
+                                                 speed * Time.deltaTime);
+        
         if (instantiateOnce) 
         {
-            instantiateOnce = !instantiateOnce;
+            Vector3 spawnPos = new Vector3(0, 0, 0);
+            instantiateOnce = false;
             Instantiate(train, spawnPos, transform.rotation);
         }
     }

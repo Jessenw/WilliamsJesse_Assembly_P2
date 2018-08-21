@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlacementController : MonoBehaviour 
 {
@@ -83,7 +84,8 @@ public class PlacementController : MonoBehaviour
 
     public void PlaceOnClick()
     {
-        if (Input.GetMouseButtonDown(0))
+        // Check if mouse button down and the mouse isn't over a UI object
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;

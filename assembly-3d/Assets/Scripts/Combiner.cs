@@ -31,18 +31,7 @@ public class Combiner : MonoBehaviour {
 
     private string currentRecipe = "";
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-        if (!currentRecipe.Equals(""))
-        {
-            buildOutput();
-        }
-    }
+    void Update() { if (!currentRecipe.Equals("")) buildOutput(); }
 
     void buildOutput()
     {
@@ -68,11 +57,10 @@ public class Combiner : MonoBehaviour {
                 timer = recipeTimer;
             }
             else timer -= Time.deltaTime;
-            
         }
     }
 
-    void OnTriggerEnter(Collider item)
+    private void OnTriggerStay(Collider item)
     {
         if (currentRecipe == "engine")
         {

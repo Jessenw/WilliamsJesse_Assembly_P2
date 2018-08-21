@@ -6,18 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class TrainScript : MonoBehaviour 
 {
-    [SerializeField]
     public Text uiText;
-
-    [SerializeField]
+    public Text roundText;
     public Transform offScreenTrainStop;
-
-    [SerializeField]
     public GameObject train;
-
     public float offScreenTimer = 1.0f;
-
-    [SerializeField]
     public float speed = 2.0f;
     
     string[] requiredItems; // The items that the train requires
@@ -69,7 +62,6 @@ public class TrainScript : MonoBehaviour
 
     void NextTrain()
     {
-        Debug.Log(offScreenTimer);
         /* Stop TrainController from freezing position */
         TrainController component = transform.GetComponent<TrainController>();
         component.enabled = false;
@@ -79,7 +71,10 @@ public class TrainScript : MonoBehaviour
                                                  offScreenTrainStop.position, 
                                                  speed * Time.deltaTime);
 
-        if (offScreenTimer <= 0) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (offScreenTimer <= 0) 
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     private void OnTriggerEnter(Collider col)

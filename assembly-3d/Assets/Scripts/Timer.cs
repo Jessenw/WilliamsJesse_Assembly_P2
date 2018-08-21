@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 public class Timer : MonoBehaviour 
 {
     public Text timerText;
+
     public float timer;
     private bool setGameOverCanvas = true;
 
-    private void Start() { timer = 120.0f; }
+    private void Start() { timer = 80.0f; }
 
     void Update () 
     {

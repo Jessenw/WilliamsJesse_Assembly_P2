@@ -21,6 +21,7 @@ public class Timer : MonoBehaviour
         GameObject timerCanvas = transform.Find("TimerCanvas").gameObject;
         GameObject uiTimer = timerCanvas.transform.Find("Timer").gameObject;
 
+
         /* When game timer expires, end the game */
         if (timer <= 0 && setGameOverCanvas)
         {
